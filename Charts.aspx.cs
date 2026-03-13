@@ -78,8 +78,8 @@ namespace ShamelessWebstudentRipoff
                 double avg = Convert.ToDouble(row["AverageGrade"]);
                 if (avg > best) { best = avg; bestName = row["CourseName"].ToString(); }
             }
-            lblTopCourse.Text = bestName.Length > 14
-                ? bestName.Substring(0, 13) + "…"
+            lblTopCourse.Text = bestName.Length > 20
+                ? bestName.Substring(0, 20) + "…"
                 : bestName;
         }
 

@@ -78,7 +78,6 @@
         <h1 class="page-title">Statistici calificative</h1>
         <p class="page-subtitle">Urmareste performanta la cursuri.</p>
 
-        <!-- ── Summary stat boxes ── -->
         <div class="stats-row">
             <div class="stat-box">
                 <div class="stat-value"><asp:Label ID="lblTotalGrades"   runat="server" Text="—" /></div>
@@ -98,10 +97,8 @@
             </div>
         </div>
 
-        <!-- ── Charts grid ── -->
         <div class="charts-grid">
 
-            <!-- Bar chart: average grade per course -->
             <div class="chart-card">
                 <h2>Media notelor per curs</h2>
                 <asp:Chart ID="chartBarAvg" runat="server" Width="460px" Height="300px">
@@ -109,6 +106,7 @@
                         <asp:Series Name="Averages" ChartType="Bar"
                             Color="#1a3a6b"
                             LabelForeColor="#ffffff"
+                            LabelBackColor="#000000"
                             Font="DM Sans, 8pt" />
                     </Series>
                     <ChartAreas>
@@ -123,14 +121,14 @@
                 <p>Media obtinuta la fiecare curs pentru toti studentii.</p>
             </div>
 
-            <!-- Column chart: number of students per course -->
             <div class="chart-card">
                 <h2>Numarul de studenti dupa curs</h2>
                 <asp:Chart ID="chartColCount" runat="server" Width="460px" Height="300px">
                     <Series>
                         <asp:Series Name="Counts" ChartType="Column"
                             Color="#c9a84c"
-                            LabelForeColor="#0f2240"
+                            LabelForeColor="#ffffff"
+                            LabelBackColor="#000000"
                             Font="DM Sans, 8pt" />
                     </Series>
                     <ChartAreas>
@@ -143,7 +141,6 @@
                 <p>Numarul de studenti notati pentru fiecare curs.</p>
             </div>
 
-            <!-- Pie chart: grade distribution buckets -->
             <div class="chart-card">
                 <h2>Distributia notelor</h2>
                 <asp:Chart ID="chartPieDist" runat="server" Width="460px" Height="300px">
@@ -162,7 +159,6 @@
                 <p>Pie chart cu performanta studentilor.</p>
             </div>
 
-            <!-- Doughnut chart: pass vs fail -->
             <div class="chart-card">
                 <h2>Promovat/Nepromovat</h2>
                 <asp:Chart ID="chartDoughnut" runat="server" Width="460px" Height="300px">

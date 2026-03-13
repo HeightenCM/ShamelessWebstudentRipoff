@@ -25,7 +25,6 @@
         <h1 class="page-title">Programul cursurilor</h1>
         <p class="page-subtitle">Vezi, adauga si modifica ore in program.</p>
 
-        <!-- ── Filter toolbar ── -->
         <div class="card">
             <div class="toolbar">
                 <label>Filtreaza dupa zi:</label>
@@ -41,7 +40,6 @@
                 </asp:DropDownList>
             </div>
 
-            <!-- ── GridView ── -->
             <div class="grid-wrapper">
                 <asp:GridView ID="gvSchedule" runat="server"
                     AutoGenerateColumns="False"
@@ -132,7 +130,6 @@
             <asp:Label ID="lblMessage" runat="server" CssClass="msg-success" />
         </div>
 
-        <!-- ── Insert panel ── -->
         <div class="card">
             <h2 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem;">
                 Adauga un curs nou

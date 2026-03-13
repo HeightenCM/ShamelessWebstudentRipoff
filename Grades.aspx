@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!-- ── Header ── -->
     <header class="site-header">
         <a class="logo" href="Default.aspx">&#127979; NetStudent</a>
         <nav>
@@ -26,7 +25,6 @@
         <h1 class="page-title">Managementul calificativelor</h1>
         <p class="page-subtitle">Vezi, modifica si adauga calificative studentilor.</p>
 
-        <!-- ── Filter toolbar ── -->
         <div class="card">
             <div class="toolbar">
                 <label for="ddlFilterCourse">Filtreaza dupa curs:</label>
@@ -43,7 +41,6 @@
                     OnClick="btnClearFilter_Click" CssClass="btn btn-ghost" />
             </div>
 
-            <!-- ── GridView ── -->
             <div class="grid-wrapper">
                 <asp:GridView ID="gvGrades" runat="server"
                     AutoGenerateColumns="False"
@@ -62,7 +59,6 @@
                         <asp:BoundField DataField="GroupName"   HeaderText="Grup"    ReadOnly="True" />
                         <asp:BoundField DataField="CourseName"  HeaderText="Curs"   ReadOnly="True" />
 
-                        <%-- Grade: plain text when editing, pill when viewing --%>
                         <asp:TemplateField HeaderText="Calificativ">
                             <ItemTemplate>
                                 <%# FormatGradePill(Eval("Grade")) %>
@@ -80,7 +76,6 @@
                             </EditItemTemplate>
                         </asp:TemplateField>
 
-                        <%-- Date --%>
                         <asp:TemplateField HeaderText="Data">
                             <ItemTemplate>
                                 <%# Eval("GradeDate", "{0:yyyy-MM-dd}") %>
@@ -93,7 +88,6 @@
                             </EditItemTemplate>
                         </asp:TemplateField>
 
-                        <%-- Edit / Update / Cancel / Delete --%>
                         <asp:CommandField ShowEditButton="True"
                             EditText="Modifica" UpdateText="Salveaza" CancelText="Anuleaza"
                             ButtonType="Button"
@@ -113,11 +107,9 @@
                 </asp:GridView>
             </div>
 
-            <%-- Feedback label --%>
             <asp:Label ID="lblMessage" runat="server" CssClass="msg-success" />
         </div>
 
-        <!-- ── Insert panel ── -->
         <div class="card">
             <h2 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem;">
                 Adauga un nou calificativ
@@ -137,21 +129,21 @@
                 </div>
 
                 <div class="field">
+                    <label>Data</label>
+                    <asp:TextBox ID="txtInsertDate" runat="server"
+                        TextMode="Date" CssClass="asp-textbox" />
+                </div>
+
+                <div class="field">
                     <label>Nota (1–10)</label>
                     <asp:TextBox ID="txtInsertGrade" runat="server"
-                        CssClass="asp-textbox" Style="width:70px" placeholder="ex. 8.5" />
+                        CssClass="asp-textbox" Style="width:80px" placeholder="ex. 8.5" />
                     <asp:RangeValidator runat="server"
                         ControlToValidate="txtInsertGrade"
                         MinimumValue="1" MaximumValue="10"
                         Type="Double"
                         ErrorMessage="Must be 1–10"
                         CssClass="msg-error" />
-                </div>
-
-                <div class="field">
-                    <label>Data</label>
-                    <asp:TextBox ID="txtInsertDate" runat="server"
-                        TextMode="Date" CssClass="asp-textbox" />
                 </div>
 
                 <div class="field" style="justify-content:flex-end">

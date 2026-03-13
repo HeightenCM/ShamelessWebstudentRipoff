@@ -79,7 +79,6 @@
         }
         .btn-hero-primary:hover, .btn-hero-ghost:hover { opacity: 0.85; }
 
-        /* ── Feature cards ── */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -126,7 +125,6 @@
             color: var(--navy-mid);
         }
 
-        /* ── Stats strip ── */
         .stats-strip {
             background: var(--navy);
             border-radius: 10px;
@@ -162,7 +160,6 @@
 
     <form id="form1" runat="server">
 
-        <!-- ── Hero ── -->
         <div class="hero">
             <div class="hero-label">Unealta administrativa pentru universitati</div>
             <h1><span>Calificative</span> &amp;<br /><span>orare</span> cu usurinta.</h1>
@@ -176,7 +173,6 @@
 
         <div class="page-wrapper">
 
-            <!-- ── Live stats strip ── -->
             <div class="stats-strip">
                 <div class="strip-stat">
                     <div class="val"><asp:Label ID="lblStudents" runat="server" Text="—" /></div>
@@ -196,7 +192,6 @@
                 </div>
             </div>
 
-            <!-- ── Feature cards ── -->
             <div class="features">
 
                 <a href="Grades.aspx" class="feature-card">

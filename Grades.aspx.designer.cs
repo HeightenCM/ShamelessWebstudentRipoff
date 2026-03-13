@@ -87,15 +87,6 @@ namespace ShamelessWebstudentRipoff
         protected global::System.Web.UI.WebControls.DropDownList ddlInsertCourse;
 
         /// <summary>
-        /// txtInsertGrade control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertGrade;
-
-        /// <summary>
         /// txtInsertDate control.
         /// </summary>
         /// <remarks>
@@ -103,6 +94,15 @@ namespace ShamelessWebstudentRipoff
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtInsertDate;
+
+        /// <summary>
+        /// txtInsertGrade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInsertGrade;
 
         /// <summary>
         /// btnInsert control.

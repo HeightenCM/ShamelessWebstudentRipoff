@@ -1,8 +1,3 @@
-/* ============================================================
-   University Grade & Schedule Management System
-   Stylesheet — university.css
-   ============================================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
@@ -28,7 +23,6 @@ body {
     min-height: 100vh;
 }
 
-/* ── Header ── */
 .site-header {
     background: var(--navy);
     padding: 0 2.5rem;
@@ -55,14 +49,12 @@ body {
 }
 .site-header nav a:hover, .site-header nav a.active { color: var(--gold-light); }
 
-/* ── Page wrapper ── */
 .page-wrapper {
     max-width: 1100px;
     margin: 2.5rem auto;
     padding: 0 1.5rem;
 }
 
-/* ── Page title ── */
 .page-title {
     font-family: 'DM Serif Display', serif;
     font-size: 2rem;
@@ -75,7 +67,6 @@ body {
     margin-bottom: 1.75rem;
 }
 
-/* ── Card ── */
 .card {
     background: #fff;
     border-radius: 10px;
@@ -84,7 +75,6 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* ── Toolbar (filter row above grid) ── */
 .toolbar {
     display: flex;
     align-items: center;
@@ -94,7 +84,6 @@ body {
 }
 .toolbar label { font-size: 0.88rem; color: var(--gray-600); font-weight: 500; }
 
-/* ── Form controls ── */
 input[type="text"], input[type="date"], select, .asp-textbox, .asp-dropdownlist {
     border: 1.5px solid var(--gray-300);
     border-radius: 6px;
@@ -108,7 +97,6 @@ input[type="text"], input[type="date"], select, .asp-textbox, .asp-dropdownlist 
 }
 input[type="text"]:focus, input[type="date"]:focus, select:focus { border-color: var(--navy-mid); }
 
-/* ── Buttons ── */
 .btn, input[type="submit"], input[type="button"], button {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
@@ -132,7 +120,6 @@ input[type="text"]:focus, input[type="date"]:focus, select:focus { border-color:
 .btn-ghost    { background: transparent; color: var(--navy-mid); border: 1.5px solid var(--gray-300); }
 .btn-ghost:hover    { border-color: var(--navy-mid); }
 
-/* ── GridView ── */
 .grid-wrapper { overflow-x: auto; }
 
 table.gridview {
@@ -160,10 +147,8 @@ table.gridview td {
 table.gridview tr:last-child td { border-bottom: none; }
 table.gridview tr:hover td { background: var(--gray-100); }
 
-/* Edit row highlight */
 table.gridview tr.edit-row td { background: #fffbe6; }
 
-/* Grade pill */
 .grade-pill {
     display: inline-block;
     padding: 0.2rem 0.65rem;
@@ -177,7 +162,6 @@ table.gridview tr.edit-row td { background: #fffbe6; }
 .grade-mid    { background: #fff3cd; color: #856404; }
 .grade-low    { background: #f8d7da; color: #842029; }
 
-/* ── Insert panel ── */
 .insert-panel {
     background: var(--gray-100);
     border-radius: 8px;
@@ -191,11 +175,9 @@ table.gridview tr.edit-row td { background: #fffbe6; }
 .insert-panel .field { display: flex; flex-direction: column; gap: 0.3rem; }
 .insert-panel label  { font-size: 0.8rem; font-weight: 600; color: var(--gray-600); }
 
-/* ── Validation / messages ── */
 .msg-error   { color: var(--red);   font-size: 0.85rem; margin-top: 0.4rem; }
 .msg-success { color: var(--green); font-size: 0.85rem; margin-top: 0.4rem; }
 
-/* ── Responsive ── */
 @media (max-width: 640px) {
     .site-header { padding: 0 1rem; }
     .page-wrapper { padding: 0 0.75rem; }

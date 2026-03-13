@@ -12,15 +12,12 @@ namespace ShamelessWebstudentRipoff
         private string ConnStr =>
             ConfigurationManager.ConnectionStrings["UniversityDB"].ConnectionString;
 
-        // =====================================================================
-        //  PAGE LOAD
-        // =====================================================================
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                var avgTable = GetCourseAverages();   // sp_GetCourseAverages
-                var allGrades = GetAllGradeValues();   // raw grade values for distribution
+                var avgTable = GetCourseAverages();
+                var allGrades = GetAllGradeValues();
 
                 PopulateSummaryStats(avgTable, allGrades);
                 BuildBarChart(avgTable);
@@ -30,11 +27,6 @@ namespace ShamelessWebstudentRipoff
             }
         }
 
-        // =====================================================================
-        //  DATA FETCHERS
-        // =====================================================================
-
-        /// <summary>Calls sp_GetCourseAverages → CourseName, AverageGrade, StudentCount</summary>
         private DataTable GetCourseAverages()
         {
             using (var con = new SqlConnection(ConnStr))
@@ -48,7 +40,6 @@ namespace ShamelessWebstudentRipoff
             }
         }
 
-        /// <summary>Returns a flat list of every grade value for distribution charts.</summary>
         private DataTable GetAllGradeValues()
         {
             using (var con = new SqlConnection(ConnStr))
@@ -61,9 +52,6 @@ namespace ShamelessWebstudentRipoff
             }
         }
 
-        // =====================================================================
-        //  SUMMARY STAT BOXES
-        // =====================================================================
         private void PopulateSummaryStats(DataTable avgTable, DataTable allGrades)
         {
             int total = allGrades.Rows.Count;
@@ -83,7 +71,6 @@ namespace ShamelessWebstudentRipoff
             lblOverallAvg.Text = (sum / total).ToString("0.00");
             lblPassRate.Text = ((pass * 100.0) / total).ToString("0") + "%";
 
-            // Highest average course
             double best = -1;
             string bestName = "—";
             foreach (DataRow row in avgTable.Rows)
@@ -91,22 +78,17 @@ namespace ShamelessWebstudentRipoff
                 double avg = Convert.ToDouble(row["AverageGrade"]);
                 if (avg > best) { best = avg; bestName = row["CourseName"].ToString(); }
             }
-            // Truncate long names for the stat box
             lblTopCourse.Text = bestName.Length > 14
                 ? bestName.Substring(0, 13) + "…"
                 : bestName;
         }
 
-        // =====================================================================
-        //  CHART 1 — Horizontal Bar: average grade per course
-        // =====================================================================
         private void BuildBarChart(DataTable dt)
         {
             var series = chartBarAvg.Series["Averages"];
             series.IsValueShownAsLabel = true;
             series.LabelFormat = "0.0";
 
-            // Navy → gold gradient across bars
             Color[] palette = {
                 ColorTranslator.FromHtml("#0f2240"),
                 ColorTranslator.FromHtml("#1a3a6b"),
@@ -131,9 +113,6 @@ namespace ShamelessWebstudentRipoff
             chartBarAvg.BackColor = Color.Transparent;
         }
 
-        // =====================================================================
-        //  CHART 2 — Column: student count per course
-        // =====================================================================
         private void BuildColumnChart(DataTable dt)
         {
             var series = chartColCount.Series["Counts"];
@@ -149,10 +128,6 @@ namespace ShamelessWebstudentRipoff
             chartColCount.BackColor = Color.Transparent;
         }
 
-        // =====================================================================
-        //  CHART 3 — Pie: grade distribution buckets
-        //  Bands: Excellent (9-10), Good (7-8.99), Satisfactory (5-6.99), Fail (<5)
-        // =====================================================================
         private void BuildPieChart(DataTable dt)
         {
             int excellent = 0, good = 0, satisfactory = 0, fail = 0;
@@ -187,9 +162,6 @@ namespace ShamelessWebstudentRipoff
             chartPieDist.BackColor = Color.Transparent;
         }
 
-        // =====================================================================
-        //  CHART 4 — Doughnut: pass vs fail
-        // =====================================================================
         private void BuildDoughnutChart(DataTable dt)
         {
             int pass = 0, fail = 0;
@@ -213,7 +185,6 @@ namespace ShamelessWebstudentRipoff
             ptFail.LegendText = $"Fail ({fail})";
             series.Points.Add(ptFail);
 
-            // Show percentage labels on slices
             series["PieLabelStyle"] = "Outside";
             series.Label = "#PERCENT{P0}";
 

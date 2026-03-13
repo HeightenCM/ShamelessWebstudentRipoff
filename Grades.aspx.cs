@@ -12,13 +12,9 @@ namespace ShamelessWebstudentRipoff
 {
     public partial class Grades : Page
     {
-        // ── Connection string pulled from Web.config ──────────────────────────
         private string ConnStr =>
             ConfigurationManager.ConnectionStrings["UniversityDB"].ConnectionString;
 
-        // =====================================================================
-        //  PAGE LOAD
-        // =====================================================================
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -27,16 +23,10 @@ namespace ShamelessWebstudentRipoff
                 PopulateInsertDropdowns();
                 BindGrid();
 
-                // Default date for insert panel = today
                 txtInsertDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
             }
         }
 
-        // =====================================================================
-        //  HELPERS
-        // =====================================================================
-
-        /// <summary>Renders a coloured grade pill for ItemTemplate cells.</summary>
         protected string FormatGradePill(object gradeObj)
         {
             if (gradeObj == DBNull.Value || gradeObj == null) return "-";
@@ -45,7 +35,6 @@ namespace ShamelessWebstudentRipoff
             return $"<span class='grade-pill {css}'>{g:0.##}</span>";
         }
 
-        /// <summary>Runs sp_GetAllGrades and binds the GridView.</summary>
         private void BindGrid()
         {
             string course = ddlFilterCourse.SelectedValue;
@@ -60,7 +49,6 @@ namespace ShamelessWebstudentRipoff
                 var dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
 
-                // Client-side filtering (course / group)
                 if (!string.IsNullOrEmpty(course))
                     dt = FilterTable(dt, "CourseName", course);
                 if (!string.IsNullOrEmpty(group))
@@ -88,13 +76,11 @@ namespace ShamelessWebstudentRipoff
             {
                 con.Open();
 
-                // Courses
                 var cmd = new SqlCommand("SELECT CourseID, CourseName FROM Courses ORDER BY CourseName", con);
                 using (var rdr = cmd.ExecuteReader())
                     while (rdr.Read())
                         ddlFilterCourse.Items.Add(new ListItem(rdr["CourseName"].ToString(), rdr["CourseName"].ToString()));
 
-                // Groups
                 cmd = new SqlCommand("SELECT DISTINCT GroupName FROM Students ORDER BY GroupName", con);
                 using (var rdr = cmd.ExecuteReader())
                     while (rdr.Read())
@@ -123,9 +109,6 @@ namespace ShamelessWebstudentRipoff
             }
         }
 
-        // =====================================================================
-        //  FILTER EVENTS
-        // =====================================================================
         protected void ddlFilterCourse_SelectedIndexChanged(object sender, EventArgs e) => BindGrid();
         protected void ddlFilterGroup_SelectedIndexChanged(object sender, EventArgs e) => BindGrid();
 
@@ -136,9 +119,6 @@ namespace ShamelessWebstudentRipoff
             BindGrid();
         }
 
-        // =====================================================================
-        //  GRIDVIEW — EDIT
-        // =====================================================================
         protected void gvGrades_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvGrades.EditIndex = e.NewEditIndex;
@@ -151,9 +131,6 @@ namespace ShamelessWebstudentRipoff
             BindGrid();
         }
 
-        // =====================================================================
-        //  GRIDVIEW — UPDATE  →  calls sp_UpdateGrade
-        // =====================================================================
         protected void gvGrades_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             int gradeId = Convert.ToInt32(gvGrades.DataKeys[e.RowIndex].Value);
@@ -193,9 +170,6 @@ namespace ShamelessWebstudentRipoff
             BindGrid();
         }
 
-        // =====================================================================
-        //  GRIDVIEW — DELETE  →  calls sp_DeleteGrade
-        // =====================================================================
         protected void gvGrades_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int gradeId = Convert.ToInt32(gvGrades.DataKeys[e.RowIndex].Value);
@@ -214,9 +188,6 @@ namespace ShamelessWebstudentRipoff
             BindGrid();
         }
 
-        // =====================================================================
-        //  INSERT PANEL  →  calls sp_InsertGrade
-        // =====================================================================
         protected void btnInsert_Click(object sender, EventArgs e)
         {
             if (!decimal.TryParse(txtInsertGrade.Text, out decimal grade) || grade < 1 || grade > 10)

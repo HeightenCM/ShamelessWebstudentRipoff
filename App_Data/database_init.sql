@@ -1,49 +1,22 @@
-﻿-- ============================================================
---  University Grade & Schedule Management System
---  SQL Server Schema + Stored Procedures
--- ============================================================
-
--- ------------------------------------------------------------
---  1. CREATE DATABASE (run once, then switch to it)
--- ------------------------------------------------------------
--- CREATE DATABASE UniversityDB;
--- GO
--- USE UniversityDB;
--- GO
-
-
--- ============================================================
---  TABLES
--- ============================================================
-
--- ------------------------------------------------------------
---  Students
--- ------------------------------------------------------------
-CREATE TABLE Students (
+﻿CREATE TABLE Students (
     StudentID   INT           IDENTITY(1,1) PRIMARY KEY,
     Name        NVARCHAR(100) NOT NULL,
     Email       NVARCHAR(150) NOT NULL UNIQUE,
-    GroupName   NVARCHAR(20)  NOT NULL       -- e.g. "3A1", "2B2"
+    GroupName   NVARCHAR(20)  NOT NULL
 );
 GO
 
--- ------------------------------------------------------------
---  Courses
--- ------------------------------------------------------------
 CREATE TABLE Courses (
     CourseID        INT           IDENTITY(1,1) PRIMARY KEY,
     CourseName      NVARCHAR(100) NOT NULL,
     ProfessorName   NVARCHAR(100) NOT NULL,
-    DayOfWeek       NVARCHAR(10)  NOT NULL,   -- e.g. "Monday"
-    StartTime       TIME          NOT NULL,   -- e.g. 08:00
-    EndTime         TIME          NOT NULL,   -- e.g. 10:00
-    Room            NVARCHAR(20)  NOT NULL    -- e.g. "A101"
+    DayOfWeek       NVARCHAR(10)  NOT NULL,
+    StartTime       TIME          NOT NULL,
+    EndTime         TIME          NOT NULL,
+    Room            NVARCHAR(20)  NOT NULL
 );
 GO
 
--- ------------------------------------------------------------
---  Grades  (junction between Students and Courses)
--- ------------------------------------------------------------
 CREATE TABLE Grades (
     GradeID     INT  IDENTITY(1,1) PRIMARY KEY,
     StudentID   INT  NOT NULL REFERENCES Students(StudentID) ON DELETE CASCADE,
@@ -52,11 +25,6 @@ CREATE TABLE Grades (
     GradeDate   DATE NOT NULL DEFAULT GETDATE()
 );
 GO
-
-
--- ============================================================
---  SEED DATA  (handy for testing)
--- ============================================================
 
 INSERT INTO Students (Name, Email, GroupName) VALUES
     (N'Ana Ionescu',   'ana.ionescu@uni.ro',   '3A1'),
@@ -84,16 +52,6 @@ INSERT INTO Grades (StudentID, CourseID, Grade, GradeDate) VALUES
     (4, 4, 7.00, '2024-11-18');
 GO
 
-
--- ============================================================
---  STORED PROCEDURES
--- ============================================================
-
--- ------------------------------------------------------------
---  sp_GetAllGrades
---  Returns all grade records joined with student and course
---  names. Used to populate the full GridView for professors.
--- ------------------------------------------------------------
 CREATE PROCEDURE sp_GetAllGrades
 AS
 BEGIN
@@ -115,11 +73,6 @@ BEGIN
 END
 GO
 
--- ------------------------------------------------------------
---  sp_GetGradesByStudent
---  Returns grades for ONE student (student self-view).
---  Parameter: @StudentID INT
--- ------------------------------------------------------------
 CREATE PROCEDURE sp_GetGradesByStudent
     @StudentID INT
 AS
@@ -138,11 +91,6 @@ BEGIN
 END
 GO
 
--- ------------------------------------------------------------
---  sp_InsertGrade
---  Inserts a new grade record.
---  Parameters: @StudentID, @CourseID, @Grade, @GradeDate
--- ------------------------------------------------------------
 CREATE PROCEDURE sp_InsertGrade
     @StudentID  INT,
     @CourseID   INT,
@@ -156,11 +104,6 @@ BEGIN
 END
 GO
 
--- ------------------------------------------------------------
---  sp_UpdateGrade
---  Updates the grade value (and optionally the date) for
---  an existing record identified by @GradeID.
--- ------------------------------------------------------------
 CREATE PROCEDURE sp_UpdateGrade
     @GradeID    INT,
     @Grade      DECIMAL(4,2),
@@ -175,10 +118,6 @@ BEGIN
 END
 GO
 
--- ------------------------------------------------------------
---  sp_DeleteGrade
---  Deletes a single grade record by primary key.
--- ------------------------------------------------------------
 CREATE PROCEDURE sp_DeleteGrade
     @GradeID INT
 AS
@@ -189,10 +128,6 @@ BEGIN
 END
 GO
 
--- ------------------------------------------------------------
---  sp_GetCourseAverages
---  Returns average grade per course — used by the Chart page.
--- ------------------------------------------------------------
 CREATE PROCEDURE sp_GetCourseAverages
 AS
 BEGIN
@@ -208,11 +143,6 @@ BEGIN
 END
 GO
 
--- ------------------------------------------------------------
---  sp_GetSchedule
---  Returns the full course schedule, optionally filtered by
---  day. Pass NULL to get all days.
--- ------------------------------------------------------------
 CREATE PROCEDURE sp_GetSchedule
     @DayOfWeek NVARCHAR(10) = NULL
 AS

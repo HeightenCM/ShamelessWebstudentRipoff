@@ -15,26 +15,15 @@ namespace ShamelessWebstudentRipoff
         private string ConnStr =>
             ConfigurationManager.ConnectionStrings["UniversityDB"].ConnectionString;
 
-        // =====================================================================
-        //  PAGE LOAD
-        // =====================================================================
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
                 BindGrid();
         }
 
-        // =====================================================================
-        //  HELPERS
-        // =====================================================================
-
-        /// <summary>
-        /// Calls sp_GetSchedule with the currently selected day filter.
-        /// Passing NULL returns all days.
-        /// </summary>
         private void BindGrid()
         {
-            string day = ddlDay.SelectedValue; // "" means all
+            string day = ddlDay.SelectedValue;
 
             using (var con = new SqlConnection(ConnStr))
             using (var cmd = new SqlCommand("sp_GetSchedule", con))
@@ -52,27 +41,18 @@ namespace ShamelessWebstudentRipoff
             }
         }
 
-        // =====================================================================
-        //  FILTER
-        // =====================================================================
         protected void ddlDay_SelectedIndexChanged(object sender, EventArgs e)
             => BindGrid();
 
-        // =====================================================================
-        //  GRIDVIEW — EDIT / CANCEL
-        // =====================================================================
         protected void gvSchedule_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvSchedule.EditIndex = e.NewEditIndex;
             BindGrid();
 
-            // Pre-select the correct day in the edit dropdown
             var row = gvSchedule.Rows[e.NewEditIndex];
             var ddl = (DropDownList)row.FindControl("ddlEditDay");
             var dtItem = gvSchedule.DataKeys[e.NewEditIndex];
 
-            // Read the day value from the bound data via the hidden DataKey
-            // We re-query just this row to get the day value reliably
             string currentDay = GetDayForCourse(Convert.ToInt32(dtItem.Value));
             if (ddl != null && !string.IsNullOrEmpty(currentDay))
                 ddl.SelectedValue = currentDay;
@@ -84,10 +64,6 @@ namespace ShamelessWebstudentRipoff
             BindGrid();
         }
 
-        // =====================================================================
-        //  GRIDVIEW — UPDATE  →  direct SQL (no stored proc for course update,
-        //  but we reuse sp_GetSchedule for the read; update is inline T-SQL)
-        // =====================================================================
         protected void gvSchedule_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             int courseId = Convert.ToInt32(gvSchedule.DataKeys[e.RowIndex].Value);
@@ -143,9 +119,6 @@ namespace ShamelessWebstudentRipoff
             BindGrid();
         }
 
-        // =====================================================================
-        //  GRIDVIEW — DELETE
-        // =====================================================================
         protected void gvSchedule_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int courseId = Convert.ToInt32(gvSchedule.DataKeys[e.RowIndex].Value);
@@ -163,9 +136,6 @@ namespace ShamelessWebstudentRipoff
             BindGrid();
         }
 
-        // =====================================================================
-        //  INSERT  →  direct INSERT (sp_GetSchedule handles reads)
-        // =====================================================================
         protected void btnInsert_Click(object sender, EventArgs e)
         {
             string courseName = txtInsertCourseName.Text.Trim();
@@ -216,10 +186,6 @@ namespace ShamelessWebstudentRipoff
             lblInsertMessage.CssClass = "msg-success";
             BindGrid();
         }
-
-        // =====================================================================
-        //  UTILITY — fetch just the DayOfWeek for a single course
-        // =====================================================================
         private string GetDayForCourse(int courseId)
         {
             using (var con = new SqlConnection(ConnStr))

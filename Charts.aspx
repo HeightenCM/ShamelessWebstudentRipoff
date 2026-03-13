@@ -7,7 +7,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Statistics — University Manager</title>
+    <title>Statistici</title>
     <link rel="stylesheet" href="university.css" />
     <style>
         .charts-grid {
@@ -64,37 +64,37 @@
 <body>
 
     <header class="site-header">
-        <a class="logo" href="Default.aspx">&#127979; UniManager</a>
+        <a class="logo" href="Default.aspx">&#127979; NetStudent</a>
         <nav>
-            <a href="Grades.aspx">Grades</a>
-            <a href="Schedule.aspx">Schedule</a>
-            <a href="Charts.aspx" class="active">Statistics</a>
+            <a href="Grades.aspx">Calificative</a>
+            <a href="Schedule.aspx">Orar</a>
+            <a href="Charts.aspx" class="active">Statistici</a>
         </nav>
     </header>
 
     <form id="form1" runat="server">
     <div class="page-wrapper">
 
-        <h1 class="page-title">Grade Statistics</h1>
-        <p class="page-subtitle">Visual overview of performance across all courses.</p>
+        <h1 class="page-title">Statistici calificative</h1>
+        <p class="page-subtitle">Urmareste performanta la cursuri.</p>
 
         <!-- ── Summary stat boxes ── -->
         <div class="stats-row">
             <div class="stat-box">
                 <div class="stat-value"><asp:Label ID="lblTotalGrades"   runat="server" Text="—" /></div>
-                <div class="stat-label">Total grades recorded</div>
+                <div class="stat-label">Total note acordate</div>
             </div>
             <div class="stat-box">
                 <div class="stat-value"><asp:Label ID="lblOverallAvg"    runat="server" Text="—" /></div>
-                <div class="stat-label">Overall average</div>
+                <div class="stat-label">Medie</div>
             </div>
             <div class="stat-box">
                 <div class="stat-value"><asp:Label ID="lblPassRate"      runat="server" Text="—" /></div>
-                <div class="stat-label">Pass rate (≥ 5)</div>
+                <div class="stat-label">Rata de promovare (≥ 5)</div>
             </div>
             <div class="stat-box">
                 <div class="stat-value"><asp:Label ID="lblTopCourse"     runat="server" Text="—" /></div>
-                <div class="stat-label">Highest avg. course</div>
+                <div class="stat-label">Media cea mai ridicata</div>
             </div>
         </div>
 
@@ -103,7 +103,7 @@
 
             <!-- Bar chart: average grade per course -->
             <div class="chart-card">
-                <h2>Average Grade by Course</h2>
+                <h2>Media notelor per curs</h2>
                 <asp:Chart ID="chartBarAvg" runat="server" Width="460px" Height="300px">
                     <Series>
                         <asp:Series Name="Averages" ChartType="Bar"
@@ -120,12 +120,12 @@
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>
-                <p>Average grade earned per course across all students.</p>
+                <p>Media obtinuta la fiecare curs pentru toti studentii.</p>
             </div>
 
             <!-- Column chart: number of students per course -->
             <div class="chart-card">
-                <h2>Student Count by Course</h2>
+                <h2>Numarul de studenti dupa curs</h2>
                 <asp:Chart ID="chartColCount" runat="server" Width="460px" Height="300px">
                     <Series>
                         <asp:Series Name="Counts" ChartType="Column"
@@ -140,12 +140,12 @@
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>
-                <p>Number of graded students per course.</p>
+                <p>Numarul de studenti notati pentru fiecare curs.</p>
             </div>
 
             <!-- Pie chart: grade distribution buckets -->
             <div class="chart-card">
-                <h2>Grade Distribution</h2>
+                <h2>Distributia notelor</h2>
                 <asp:Chart ID="chartPieDist" runat="server" Width="460px" Height="300px">
                     <Series>
                         <asp:Series Name="Distribution" ChartType="Pie"
@@ -159,12 +159,12 @@
                         <asp:Legend Name="LegendPie" Font="DM Sans, 8pt" />
                     </Legends>
                 </asp:Chart>
-                <p>Breakdown of all grades into performance bands.</p>
+                <p>Pie chart cu performanta studentilor.</p>
             </div>
 
             <!-- Doughnut chart: pass vs fail -->
             <div class="chart-card">
-                <h2>Pass / Fail Overview</h2>
+                <h2>Promovat/Nepromovat</h2>
                 <asp:Chart ID="chartDoughnut" runat="server" Width="460px" Height="300px">
                     <Series>
                         <asp:Series Name="PassFail" ChartType="Doughnut"
@@ -177,7 +177,7 @@
                         <asp:Legend Name="LegendDoughnut" Font="DM Sans, 8pt" />
                     </Legends>
                 </asp:Chart>
-                <p>Overall pass rate across all students and courses.</p>
+                <p>Pie chart cu rata de promovabilitate a studentilor.</p>
             </div>
 
         </div>

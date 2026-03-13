@@ -5,7 +5,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>UniManager — University Grade & Schedule System</title>
+    <title>NetStudent — Managementul Universitatii</title>
     <link rel="stylesheet" href="university.css" />
     <style>
         .hero {
@@ -152,11 +152,11 @@
 <body>
 
     <header class="site-header">
-        <a class="logo" href="Default.aspx">&#127979; UniManager</a>
+        <a class="logo" href="Default.aspx">&#127979; NetStudent</a>
         <nav>
-            <a href="Grades.aspx">Grades</a>
-            <a href="Schedule.aspx">Schedule</a>
-            <a href="Charts.aspx">Statistics</a>
+            <a href="Grades.aspx">Calificative</a>
+            <a href="Schedule.aspx">Orar</a>
+            <a href="Charts.aspx">Statistici</a>
         </nav>
     </header>
 
@@ -164,13 +164,13 @@
 
         <!-- ── Hero ── -->
         <div class="hero">
-            <div class="hero-label">University Management System</div>
-            <h1>Manage grades &amp;<br /><span>schedules</span> with ease.</h1>
-            <p>A unified tool for recording student grades, browsing course timetables,
-               and visualising academic performance at a glance.</p>
+            <div class="hero-label">Unealta administrativa pentru universitati</div>
+            <h1><span>Calificative</span> &amp;<br /><span>orare</span> cu usurinta.</h1>
+            <p>Incarca calificative pentru studenti, modifica programul orelor
+               si vezi statistici cu performanta la cateva click-uri distanta!</p>
             <div class="hero-actions">
-                <a href="Grades.aspx"   class="btn-hero-primary">Open Grades</a>
-                <a href="Schedule.aspx" class="btn-hero-ghost">View Schedule</a>
+                <a href="Grades.aspx"   class="btn-hero-primary">Acorda Calificative</a>
+                <a href="Schedule.aspx" class="btn-hero-ghost">Vezi Orarul</a>
             </div>
         </div>
 
@@ -180,19 +180,19 @@
             <div class="stats-strip">
                 <div class="strip-stat">
                     <div class="val"><asp:Label ID="lblStudents" runat="server" Text="—" /></div>
-                    <div class="lbl">Students</div>
+                    <div class="lbl">Studenti</div>
                 </div>
                 <div class="strip-stat">
                     <div class="val"><asp:Label ID="lblCourses" runat="server" Text="—" /></div>
-                    <div class="lbl">Courses</div>
+                    <div class="lbl">Cursuri</div>
                 </div>
                 <div class="strip-stat">
                     <div class="val"><asp:Label ID="lblGrades" runat="server" Text="—" /></div>
-                    <div class="lbl">Grades recorded</div>
+                    <div class="lbl">Calificative acordate</div>
                 </div>
                 <div class="strip-stat">
                     <div class="val"><asp:Label ID="lblAvg" runat="server" Text="—" /></div>
-                    <div class="lbl">Overall average</div>
+                    <div class="lbl">Media generala</div>
                 </div>
             </div>
 
@@ -201,26 +201,26 @@
 
                 <a href="Grades.aspx" class="feature-card">
                     <span class="feature-icon">&#128221;</span>
-                    <h3>Grade Management</h3>
-                    <p>Record, edit, and delete student grades across all courses.
-                       Filter by course or group to find entries quickly.</p>
-                    <span class="card-link">Open grades &rarr;</span>
+                    <h3>Calificative</h3>
+                    <p>Inregistreaza, modifica si sterge notele studentilor la orice materie.
+                       Filtreaza dupa curs sau grup pentru o regasire rapida.</p>
+                    <span class="card-link">Vezi calificativele &rarr;</span>
                 </a>
 
                 <a href="Schedule.aspx" class="feature-card">
                     <span class="feature-icon">&#128197;</span>
-                    <h3>Course Schedule</h3>
-                    <p>Browse the full weekly timetable. Add new courses or update
-                       room and time information at any time.</p>
-                    <span class="card-link">View schedule &rarr;</span>
+                    <h3>Orar</h3>
+                    <p>Exploreaza orarul saptamanal. Adauga cursuri noi sau rectifica
+                       sala sau timpul in orice moment.</p>
+                    <span class="card-link">Vezi orarul &rarr;</span>
                 </a>
 
                 <a href="Charts.aspx" class="feature-card">
                     <span class="feature-icon">&#128200;</span>
-                    <h3>Statistics</h3>
-                    <p>Visual charts showing average grades per course, grade
-                       distribution bands, and overall pass / fail rates.</p>
-                    <span class="card-link">See statistics &rarr;</span>
+                    <h3>Statistici</h3>
+                    <p>O varietate de grafice afisand medii, distributii
+                       de note si rata de premianti.</p>
+                    <span class="card-link">Vezi statisticile &rarr;</span>
                 </a>
 
             </div>

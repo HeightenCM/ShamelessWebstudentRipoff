@@ -102,7 +102,7 @@ namespace ShamelessWebstudentRipoff
 
             if (string.IsNullOrEmpty(courseName) || string.IsNullOrEmpty(professor))
             {
-                lblMessage.Text = "⚠ Course name and professor are required.";
+                lblMessage.Text = "⚠ Numele cursului si al profesorului sunt necesare.";
                 lblMessage.CssClass = "msg-error";
                 return;
             }
@@ -110,7 +110,7 @@ namespace ShamelessWebstudentRipoff
             if (!TimeSpan.TryParse(start, out TimeSpan startTime) ||
                 !TimeSpan.TryParse(end, out TimeSpan endTime))
             {
-                lblMessage.Text = "⚠ Times must be in HH:mm format (e.g. 08:00).";
+                lblMessage.Text = "⚠ Timpul trebuie sa fie in formatul HH:mm (ex. 08:00).";
                 lblMessage.CssClass = "msg-error";
                 return;
             }
@@ -138,7 +138,7 @@ namespace ShamelessWebstudentRipoff
             }
 
             gvSchedule.EditIndex = -1;
-            lblMessage.Text = "✓ Course updated successfully.";
+            lblMessage.Text = "✓ Curs modificat cu succes.";
             lblMessage.CssClass = "msg-success";
             BindGrid();
         }
@@ -158,7 +158,7 @@ namespace ShamelessWebstudentRipoff
                 cmd.ExecuteNonQuery();
             }
 
-            lblMessage.Text = "✓ Course deleted.";
+            lblMessage.Text = "✓ Curs sters.";
             lblMessage.CssClass = "msg-success";
             BindGrid();
         }
@@ -178,7 +178,7 @@ namespace ShamelessWebstudentRipoff
             if (string.IsNullOrEmpty(courseName) || string.IsNullOrEmpty(professor)
                 || string.IsNullOrEmpty(room))
             {
-                lblInsertMessage.Text = "⚠ Course name, professor, and room are required.";
+                lblInsertMessage.Text = "⚠ Numele cursului, numele profesorului si sala sunt obligatorii.";
                 lblInsertMessage.CssClass = "msg-error";
                 return;
             }
@@ -186,7 +186,7 @@ namespace ShamelessWebstudentRipoff
             if (!TimeSpan.TryParse(start, out TimeSpan startTime) ||
                 !TimeSpan.TryParse(end, out TimeSpan endTime))
             {
-                lblInsertMessage.Text = "⚠ Times must be in HH:mm format (e.g. 08:00).";
+                lblInsertMessage.Text = "⚠ Timpul trebuie sa fie in formatul HH:mm (ex. 08:00).";
                 lblInsertMessage.CssClass = "msg-error";
                 return;
             }
@@ -212,7 +212,7 @@ namespace ShamelessWebstudentRipoff
             txtInsertEnd.Text = "";
             txtInsertRoom.Text = "";
 
-            lblInsertMessage.Text = "✓ Course added successfully.";
+            lblInsertMessage.Text = "✓ Curs adaugat cu succes.";
             lblInsertMessage.CssClass = "msg-success";
             BindGrid();
         }

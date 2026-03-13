@@ -5,30 +5,30 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Schedule — University Manager</title>
+    <title>Orar</title>
     <link rel="stylesheet" href="university.css" />
 </head>
 <body>
 
     <header class="site-header">
-        <a class="logo" href="Default.aspx">&#127979; UniManager</a>
+        <a class="logo" href="Default.aspx">&#127979; NetStudent</a>
         <nav>
-            <a href="Grades.aspx">Grades</a>
-            <a href="Schedule.aspx" class="active">Schedule</a>
-            <a href="Charts.aspx">Statistics</a>
+            <a href="Grades.aspx">Calificative</a>
+            <a href="Schedule.aspx" class="active">Orar</a>
+            <a href="Charts.aspx">Statistici</a>
         </nav>
     </header>
 
     <form id="form1" runat="server">
     <div class="page-wrapper">
 
-        <h1 class="page-title">Course Schedule</h1>
-        <p class="page-subtitle">View, add, and manage course timetable entries.</p>
+        <h1 class="page-title">Programul cursurilor</h1>
+        <p class="page-subtitle">Vezi, adauga si modifica ore in program.</p>
 
         <!-- ── Filter toolbar ── -->
         <div class="card">
             <div class="toolbar">
-                <label>Filter by day:</label>
+                <label>Filtreaza dupa zi:</label>
                 <asp:DropDownList ID="ddlDay" runat="server" AutoPostBack="true"
                     OnSelectedIndexChanged="ddlDay_SelectedIndexChanged"
                     CssClass="asp-dropdownlist">
@@ -52,10 +52,10 @@
                     OnRowCancelingEdit="gvSchedule_RowCancelingEdit"
                     OnRowDeleting="gvSchedule_RowDeleting"
                     EditRowStyle-CssClass="edit-row"
-                    EmptyDataText="No courses found.">
+                    EmptyDataText="Niciun curs gasit.">
                     <Columns>
 
-                        <asp:TemplateField HeaderText="Course Name">
+                        <asp:TemplateField HeaderText="Nume curs">
                             <ItemTemplate><%# Eval("CourseName") %></ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtCourseName" runat="server"
@@ -63,7 +63,7 @@
                             </EditItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Professor">
+                        <asp:TemplateField HeaderText="Profesor">
                             <ItemTemplate><%# Eval("ProfessorName") %></ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtProfessor" runat="server"
@@ -71,7 +71,7 @@
                             </EditItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Day">
+                        <asp:TemplateField HeaderText="Zi">
                             <ItemTemplate><%# Eval("DayOfWeek") %></ItemTemplate>
                             <EditItemTemplate>
                                 <asp:DropDownList ID="ddlEditDay" runat="server" CssClass="asp-dropdownlist">
@@ -93,7 +93,7 @@
                             </EditItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="End">
+                        <asp:TemplateField HeaderText="Sfarsit">
                             <ItemTemplate><%# Eval("EndTime") %></ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtEnd" runat="server"
@@ -102,7 +102,7 @@
                             </EditItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Room">
+                        <asp:TemplateField HeaderText="Sala">
                             <ItemTemplate><%# Eval("Room") %></ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtRoom" runat="server"
@@ -112,14 +112,14 @@
                         </asp:TemplateField>
 
                         <asp:CommandField ShowEditButton="True"
-                            EditText="Edit" UpdateText="Save" CancelText="Cancel"
+                            EditText="Modifica" UpdateText="Salveaza" CancelText="Anuleaza"
                             ButtonType="Button"
                             ControlStyle-CssClass="btn btn-ghost" />
 
                         <asp:TemplateField HeaderText="">
                             <ItemTemplate>
                                 <asp:Button ID="btnDelete" runat="server"
-                                    CommandName="Delete" Text="Delete"
+                                    CommandName="Delete" Text="Sterge"
                                     CssClass="btn btn-danger"
                                     OnClientClick="return confirm('Delete this course?');" />
                             </ItemTemplate>
@@ -135,22 +135,22 @@
         <!-- ── Insert panel ── -->
         <div class="card">
             <h2 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem;">
-                Add New Course
+                Adauga un curs nou
             </h2>
             <div class="insert-panel">
 
                 <div class="field">
-                    <label>Course Name</label>
+                    <label>Nume curs</label>
                     <asp:TextBox ID="txtInsertCourseName" runat="server" CssClass="asp-textbox" />
                 </div>
 
                 <div class="field">
-                    <label>Professor</label>
+                    <label>Profesor</label>
                     <asp:TextBox ID="txtInsertProfessor" runat="server" CssClass="asp-textbox" />
                 </div>
 
                 <div class="field">
-                    <label>Day</label>
+                    <label>Zi</label>
                     <asp:DropDownList ID="ddlInsertDay" runat="server" CssClass="asp-dropdownlist">
                         <asp:ListItem Text="Monday"    Value="Monday" />
                         <asp:ListItem Text="Tuesday"   Value="Tuesday" />
@@ -167,19 +167,19 @@
                 </div>
 
                 <div class="field">
-                    <label>End (HH:mm)</label>
+                    <label>Sfarsit (HH:mm)</label>
                     <asp:TextBox ID="txtInsertEnd" runat="server"
                         CssClass="asp-textbox" Style="width:80px" placeholder="10:00" />
                 </div>
 
                 <div class="field">
-                    <label>Room</label>
+                    <label>Sala</label>
                     <asp:TextBox ID="txtInsertRoom" runat="server"
                         CssClass="asp-textbox" Style="width:70px" />
                 </div>
 
                 <div class="field" style="justify-content:flex-end">
-                    <asp:Button ID="btnInsert" runat="server" Text="Add Course"
+                    <asp:Button ID="btnInsert" runat="server" Text="Adauga curs"
                         OnClick="btnInsert_Click" CssClass="btn btn-gold" />
                 </div>
 

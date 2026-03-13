@@ -164,14 +164,14 @@ namespace ShamelessWebstudentRipoff
 
             if (!decimal.TryParse(txtGrade.Text, out decimal grade) || grade < 1 || grade > 10)
             {
-                lblMessage.Text = "⚠ Grade must be between 1 and 10.";
+                lblMessage.Text = "⚠ Nota trebuie sa fie intre 1 si 10.";
                 lblMessage.CssClass = "msg-error";
                 return;
             }
 
             if (!DateTime.TryParse(txtDate.Text, out DateTime gradeDate))
             {
-                lblMessage.Text = "⚠ Invalid date.";
+                lblMessage.Text = "⚠ Data invalida.";
                 lblMessage.CssClass = "msg-error";
                 return;
             }
@@ -188,7 +188,7 @@ namespace ShamelessWebstudentRipoff
             }
 
             gvGrades.EditIndex = -1;
-            lblMessage.Text = "✓ Grade updated successfully.";
+            lblMessage.Text = "✓ Nota modificata cu succes.";
             lblMessage.CssClass = "msg-success";
             BindGrid();
         }
@@ -209,7 +209,7 @@ namespace ShamelessWebstudentRipoff
                 cmd.ExecuteNonQuery();
             }
 
-            lblMessage.Text = "✓ Grade deleted.";
+            lblMessage.Text = "✓ Nota stearsa.";
             lblMessage.CssClass = "msg-success";
             BindGrid();
         }
@@ -221,14 +221,14 @@ namespace ShamelessWebstudentRipoff
         {
             if (!decimal.TryParse(txtInsertGrade.Text, out decimal grade) || grade < 1 || grade > 10)
             {
-                lblInsertMessage.Text = "⚠ Grade must be between 1 and 10.";
+                lblInsertMessage.Text = "⚠ Nota trebuie sa fie intre 1 si 10.";
                 lblInsertMessage.CssClass = "msg-error";
                 return;
             }
 
             if (!DateTime.TryParse(txtInsertDate.Text, out DateTime gradeDate))
             {
-                lblInsertMessage.Text = "⚠ Invalid date.";
+                lblInsertMessage.Text = "⚠ Data invalida.";
                 lblInsertMessage.CssClass = "msg-error";
                 return;
             }
@@ -250,7 +250,7 @@ namespace ShamelessWebstudentRipoff
 
             txtInsertGrade.Text = "";
             txtInsertDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
-            lblInsertMessage.Text = "✓ Grade added successfully.";
+            lblInsertMessage.Text = "✓ Calificativ adaugat cu succes.";
             lblInsertMessage.CssClass = "msg-success";
             BindGrid();
         }
